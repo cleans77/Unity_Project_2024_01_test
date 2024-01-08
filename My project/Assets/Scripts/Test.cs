@@ -7,13 +7,13 @@ public class Test : MonoBehaviour
     public float Hp;
     void Start()
     {
-        Hp = 50;
+        Hp = 30;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.E))
-            Hp -= 1f;
+            Hp -= 3f;
     }
 }
