@@ -9,7 +9,7 @@ public class ProjectileMove : MonoBehaviour //총알 클래스 설정
 
     void Update()
     {
-        transform.position += Vector3.forward * Time.deltaTime;
+        transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
         lifeTime -= Time.deltaTime;
         if(lifeTime < 0.0f )
             Destroy(this.gameObject);
