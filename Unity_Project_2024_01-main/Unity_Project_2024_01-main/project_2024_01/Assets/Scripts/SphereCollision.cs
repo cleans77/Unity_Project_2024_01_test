@@ -4,9 +4,33 @@ using UnityEngine;
 
 public class SphereCollision : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private float CheackTime = 0.0f;
+    private float Hp = 100;
+    private void Update()
     {
-        int cHp = collision.gameObject.GetComponent<PlayerCollision>().Hp;
-        Debug.Log("Collision Hp : " + cHp);
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("현재 남은 Hp : " + Hp);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "TIME")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other != null)
+        {
+        CheackTime += Time.deltaTime;
+        if(CheackTime >= 1.0f)
+        {
+            Debug.Log("Hp Down");
+            Hp -= 1;
+            CheackTime = 0.0f;
+        }
+        }
     }
 }

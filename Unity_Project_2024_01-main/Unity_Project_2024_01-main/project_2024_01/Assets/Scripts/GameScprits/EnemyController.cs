@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -14,7 +15,8 @@ public class EnemyController : MonoBehaviour
     private Rigidbody body;
     private Transform player;
     private float nextFireTime;
-  
+
+    public float Hp = 100;
     void Start()
     {
         body = GetComponent<Rigidbody>();       //지금 오브젝트의 RigidBody를 가져옴
@@ -40,7 +42,8 @@ public class EnemyController : MonoBehaviour
             if(Time.time > nextFireTime) 
             {
                 nextFireTime = Time.time + 1f / fireRate;       //시간대비 쏘는 횟수 
-                Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+                GameObject temp = (GameObject)Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+                temp.GetComponent<ProjectileMove>().prjtpe = ProjectileMove.PROJECTILETYPE.Enemy;
             }
         }
     }
